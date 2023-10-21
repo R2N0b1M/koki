@@ -1,0 +1,5 @@
+/koki*
+*.py
+!speedtest.py
+
+dist/
