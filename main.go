@@ -33,6 +33,7 @@ type Config struct {
 	Enabled bool
 	Rules   RulesType
 	Device  string
+	Promisc bool
 }
 
 func (rules *RulesType) String() string {
@@ -94,11 +95,13 @@ func main() {
 		Enabled: true,
 		Rules:   RulesType{},
 		Device:  "eth0",
+		Promisc: false,
 	}
 	flag.StringVar(&config.Device, "d", config.Device, "device")
 	flag.UintVar(&config.TTL, "ttl", config.TTL, "ttl")
 	flag.UintVar(&config.Mode, "m", config.Mode, "mode (0: trigger on SYN, 1: trigger on SYN+ACK)")
 	flag.Var(&config.Rules, "r", "rules")
+	flag.BoolVar(&config.Promisc, "p", config.Promisc, "enable promiscuous mode (pcap only)")
 	showVersion := flag.Bool("v", false, "show version")
 	flag.Parse()
 

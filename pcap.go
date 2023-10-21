@@ -20,7 +20,7 @@ func KokiStart(receiver chan []byte, sender chan []byte, config Config) {
 	for _, device := range devices {
 		fmt.Println(device.Name, device.Description)
 	}
-	handle, err := pcap.OpenLive(config.Device, 128, true, time.Millisecond)
+	handle, err := pcap.OpenLive(config.Device, 128, config.Promisc, time.Millisecond)
 	if err != nil {
 		log.Fatal(err)
 	}
